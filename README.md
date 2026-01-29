@@ -1,5 +1,5 @@
 # CKA-Notes
-CKA notes 
+Exam prep notes for CKA and CKAD
 
 CKA Exam Points
 - Cluster Architecture, Installation & Configuration
