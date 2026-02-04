@@ -118,3 +118,57 @@
 - Environment variables
 	-  All the environment variables specified in the container image are available to the container. In addition, we can also set environment variables for the containers that run in the pod. To set environment variables,
 	- we can include the ENV feed in the YAML file and provide the values for the environment variables. ENV allows us to set environment variables for a container specifying a value directly for each variable that you name.
+
+##### Storage, Services and Networking
+
+###### Cluster Networking
+- Each node in the cluster has a pre-assigned IP address
+- Every pod gets its own IP address
+- Pod network CIDR range is specified during cluster initialization
+- kube-proxy enables communication between the pods
+- Service Object - Load balancing between replicas
+- Services also have unique IP address
+- Communication within cluster
+	- Container-to-container communications
+	- Pod-to-pod communications
+	- Pod-to-service communications
+		- ClusterIP service
+	- External-internal communications
+		- NodePort, LoadBalancer, ExternalName services
+	- Ingress controller and ingress rules
+		- Reverse proxy and load balancer
+	- Egress
+		- Outbound traffic to outside the cluster
+
+###### Hostname and Cluster DNS
+- Hostname of the container is the name of the Pod in which the container is running
+- Pod spec has an optional hostname field to specify the Pod's hostname
+- Every service defined in the cluster is assigned a DNS name
+- A pod's DNS search list includes own namespace and the cluster's default domain
+- CoreDNS is a flexible & extensible DNS service
+- ClusterIP services are assigned a DNS A record
+	`my-svc.my-namespace.svc.cluster-domain.example`
+
+###### Services
+- Pods are transient & load balance and load across available replicas
+- Service provides an abstraction for a set of Pods and a policy to access them
+- It provides a single DNS name for a set of Pods and can load-balance across them
+- Types
+	- ClusterIP
+	- NodePort
+	- LoadBalancer
+	- ExternalName
+- ClusterIP
+	- Exposes the service within the cluster only
+	- Service maps any incoming traffic to targetPort
+- NodePort
+	- Exposed on each Node's IP
+	- Accessible from external networks on NodeIP:NodePort
+	- Automatically creates ClusterIP service internally
+- LoadBalancer service
+	- Exposes the service using a cloud provider's load balancer
+	- ClusterIP services are automatically created
+- ExternalName service
+	- Does not have selectors; instead uses DNS names
+	- No proxying of any kind is set up for external name
+	- Use case for services without selectors
