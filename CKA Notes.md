@@ -172,3 +172,42 @@
 	- Does not have selectors; instead uses DNS names
 	- No proxying of any kind is set up for external name
 	- Use case for services without selectors
+
+###### Ingress controller and Ingress API
+- Ingress Controller
+	- Runs in a cluster and is used to manage external access to the services in a cluster
+	- Kubernetes supports and maintains AWS, GCE, and nginx ingress controllers
+	- Other controllers examples
+		- AKS Application Gateway Ingress Controller
+		- Istio Ingress is an Istio based ingress controller
+		- Ambassador API Gateway
+- Ingress
+	- K8s resource runs in a namespace, name-based virtual hosting
+- One external public IP to Ingress Controller 
+- More than one ingress controller deployment possible in single cluster
+- Annotation on ingress object to determine which Ingress Controller to connect
+- Ingress Rules
+	- Ingress spec has all the information needed on route information
+	- list of rules matched against all incoming requests
+	- backend = service + port
+- Types of Ingress
+	1. Single service ingress
+	2. Name based virtual hosting
+	3. Simple fanout
+- Secured Ingress with TLS private key and certificate
+
+###### CNI - Container Network Interface And Network Policy
+- CNI
+	- Network needs before any applications
+	- K8s supports CNI plugins for networking
+	- Defines basic execution flow & configuration format for network operations
+	- Consists specs for network configs
+- Network policy
+	- Network policies are implemented by the network plugin
+	- Application-centric construct which specify how a pod is allowed to communicate with various network entities
+	- Based on
+		- Pods
+		- Namespaces
+		- IP Blocks
+	- Ingress vs. Egress
+
