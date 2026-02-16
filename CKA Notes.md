@@ -211,3 +211,80 @@
 		- IP Blocks
 	- Ingress vs. Egress
 
+###### Volumes & Persistent Storage
+- Pods are Ephemeral
+- Data saved within container is temporary
+- Data outside the container filesystem
+- K8s Volumes provides a storage to store the data
+- Volume is directory
+- Volumes can be mounted to container at a defined path
+- Several types of Volumes
+	1. emptyDir
+		- Empty when pod starts
+		- Stores the data on the same node where pod runs
+	2. hostPath
+		- Mounts a file or directory from the host node's filesystem into the pod
+		- it will last even if pod is recreated
+- Some other types of Volumes commonly used are
+	- AWS EBS CSI
+	- Azure Disk CSI
+	- Azure File CSI
+	- GCE Persistent Disk CSI
+	- Portworx CSI volumes
+	- NFS
+- Persistent Volumes
+	- Persistent Volumes provide an API for users and administrators
+	- how storage is provided from how its consumed
+	- PV is provisioned by administrator
+	- PVC
+		- Is a request for storage by a user or application developer
+		- PVCs consume PV resources
+	- PVs are not namespace resource
+	- PVCs are namespace resource
+	- Access Modes
+		- ReadWriteOnce (RWO)
+		- ReadOnlyMany (ROX)
+		- ReadWriteMany (RWX)
+- Storage classes
+	- Static provisioning without storage classes
+	- Dynamic provisioning with storage classes
+	- PVC to PV binding is a one-to-one mapping
+	- Its not namespace scoped
+- CSI - Container storage interface
+- Volume binding modes
+- Volume phases
+	- PVs are claimed by PVCs
+	- Volume can be in one of the following phase
+		- Available
+		- Bound
+		- Released
+		- Failed
+- Reclaim Policies
+	- Retain
+	- Recycle
+	- Delete
+##### Kubernetes: Scaling Workloads
+
+###### Replication Controller & Replica Sets
+
+- Replication Controller
+	- **Definition:** The original Kubernetes mechanism for ensuring a specified number of identical pod replicas are running at all times.
+	- **Function:** Automatically replaces pods if they crash, fail, or are deleted.
+	- **Selector Type:** Supports only **equality-based** label selectors (e.g., `app=nginx`).
+	- **Status:** Largely replaced by ReplicaSets; considered legacy.
+- Replica Set
+	- **Definition:** The next-generation, improved version of the Replication Controller that maintains a stable set of pod replicas.
+	- **Function:** Ensures high availability by maintaining a desired number of pods, usually managed by Deployments.
+	- **Selector Type:** Supports **set-based** label selectors (e.g., `app in (nginx, apache)`).
+	- **Usage:** Preferred for new workloads and used implicitly by Deployments to handle rolling updates.
+
+###### Init Containers
+- Run
+	- In a Pod
+	- Before the App containers
+	- Completion
+- Common usecases
+	- Creating config file from env variables
+	- Settings up cache for app
+	- Migrate or load database
+	- Download plugins
