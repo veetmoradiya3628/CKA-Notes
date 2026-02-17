@@ -334,4 +334,104 @@
 ##### Kubernetes: Pods and Schedulers
 
 ###### Stateful Sets
-- 
+- Like Deployments, schedules pods with identical specifications
+- Maintain a sticky identity - each scheduled pod gets a persistent identifier maintained across rescheduling
+- Ordered deployment and updating (in order pods were created)
+- Consistent names
+- Persistent storage
+- Ordinal names (0...)
+- Stable Hostnames
+- Scaling
+	- Rolling Updates
+	- On Delete
+
+###### Jobs and Cron Jobs
+- Jobs
+	- Job creates one more more pods to execute a task tracking success and failures
+	- As pod complete, successes are tracked, when enough done, the job is complete
+	- meant to run one thing to completion
+- Cron Jobs
+	- Same features as Jobs
+	- Scheduled to run on schedule
+	- can run multiple jobs in parallel
+	- can retry failed jobs
+	- can be configured to delete jobs after they have completed
+
+###### DeamonSets
+- Runs a pod on all cluster nodes that meet criteria
+- Useful for cluster-level operations pods: logging, monitoring and background tasks
+- Automatically creates and removes pods as nodes are added and removed
+- Can use rollout strategies as deployment do namely
+	- OnDelete
+	- RollingUpdate
+- Cannot create DeamonSet without YAML
+- Tolerations
+- Node Selector
+- Ways to refers to DeamonSets
+
+###### K8s Schedulers
+- Watches for newly created Pods to find a place to schedule them
+	- Resource requirements
+	- Availability of resources
+	- Pod Affinity / Anti-affinity
+	- Tolerations
+	- Priority
+- Filtering and scoring
+- Custom schedulers
+- Taints and tolerations
+- Scheduling framework includes the phases as 
+	- Pre Enque
+	- Scheduling cycle
+	- Binding cycle
+
+###### Assigning Nodes to Pods
+- Taints: use of repel pods
+- Tolerations: allows pods to schedule on nodes with matching taints
+- Affinity and Anti-affinity
+	- Node Affinity
+	- Pod Affinity
+	- Pod Anti-affinity
+- Usages
+- Scheduling gates (1.26)
+	- avoids unnecessary churn in scheduler
+	- gives us control of when to be considered for scheduling
+	- gates must be manually removed
+
+- Resource Limits
+	- Requests and Limits
+	- Resources
+	- CPU, memory, Huge Pages
+	- checking limits / events
+	- reasons to use limits
+	- CPU
+		- Quantity
+	- Memory
+		- Units - E P T G M k
+	- Huge pages
+		- Performance,
+		- Fragmentation
+		- Conserve Memory
+- Manifest management
+	- Template
+		- Environments
+		- Applications
+		- Deployment strategies
+	- Tooling
+		- kubectl
+		- YQ
+		- Helm
+		- Kustomize
+	- Templating with Code like Jinja, Golang or Ansible
+
+###### Static Pods
+- Pod not managed by kube API server
+- bound to kubelet agent on Node
+- kubelete agent will manage and restart if required
+	- bound to one kubelete on one node
+- Visible (but not controller) by API server
+- Created via manifest in  a directory watched by kubelet
+- Pod without replication requirement
+- Pod that can not scale and not managed by control plane
+
+##### Kubernetes: Cluster Architecture, Installation & Configuration
+
