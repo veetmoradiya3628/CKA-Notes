@@ -435,3 +435,57 @@
 
 ##### Kubernetes: Cluster Architecture, Installation & Configuration
 
+- Kubeadm for creating a Kubernetes cluster
+###### RBAC
+- Authentication (AuthN)
+- Authorization (AuthZ)
+	- ABAC
+	- RBAC
+	- Webhook
+- Admission control
+- Subjects
+	- User
+	- Groups
+	- Service Accounts
+- Role
+- Role binding
+- Cluster Role
+- Cluster Role Binding
+- aggregation Rule
+	- Matches to the label combine rules
+- System is a reserved prefix - can not use with Users and Groups
+- Categories
+	- API Discovery
+	- User-Facing
+	- Core component
+	- Built in
+
+- High availability in K8s cluster
+	- Use more than one Control Plane (master) node
+	- Front the cluster with Load Balancer
+	- Using more than one region (or Data center)
+	- Ensuring regular backups of certs and etcds
+- Etcd HA
+	- Stacked Etcd
+	- External Etcd Cluster
+- LB in front of the Cluster API server
+- Multiple instances of 
+	- Kube Scheduler
+	- Kube Controller Manager
+	- Cloud Controller Manager
+- Multiple worker pools
+- Replication and Pod Autoscaling
+- Node level failure handling
+- Load Balancer and service redundancy
+- Cluster-level fault tolerance 
+	- multiple CP
+- Perform cluster upgrades
+	- drain and cordon
+
+- Cluster and Application monitoring
+	- Probes and parameters
+	- Probes test
+		- Command
+		- HTTP GET
+		- TCP Check
+- Etcd backup and restore
