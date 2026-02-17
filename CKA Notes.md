@@ -277,6 +277,9 @@
 	- **Function:** Ensures high availability by maintaining a desired number of pods, usually managed by Deployments.
 	- **Selector Type:** Supports **set-based** label selectors (e.g., `app in (nginx, apache)`).
 	- **Usage:** Preferred for new workloads and used implicitly by Deployments to handle rolling updates.
+- Replication Controller uses an Equity based selector
+- ReplicaSets use Set-based selector
+- Deployment will automatically creates a ReplicaSet
 
 ###### Init Containers
 - Run
@@ -288,3 +291,47 @@
 	- Settings up cache for app
 	- Migrate or load database
 	- Download plugins
+
+###### Config Maps & Secrets
+- Secret as base64 encoded while Config Map is without base64
+- Config map & secret can be created via command or can refer data from file itself
+- For using on Pod
+	- Mount as Volumes
+	- Mount as Env Vars
+- docker registry secret is Usecase
+- Generic and docker-config type secrets
+- Config maps for
+	- non-sensitive information
+	- stored in plain text
+	- size limit of 1 MB per object
+	- created from literal, files or directories
+- Secrets for
+	- sensitive information
+	- stored base64 encoded
+	- size limit of 1 MB per object and 64 kb per key-value pair
+	- created from literal values or files
+
+###### Scaling Applications
+- Two ways to do 
+	1. Scaling manually with kubectl
+	2. Horizontal Pod Autoscaling (HPA)
+- Robust self-healing application deployment
+	1. Pods should be defined to ReplicaSet or RS from Deployment
+	2. Deployments define from ReplicaSets and Strategies for updates
+		- exception: restartPolicy: Never
+	3. Define and Use labels to identify meaningful attributes of your application
+- Features from self-healing application
+	1. Automatically recovers from an unhealthy state
+	2. Makes certain at least one copy of the application is running at all times
+	3. Maintains a consistent network identity
+	4. Liveness and Readiness probes
+- Using rollouts
+	1. rollout status
+	2. rollout history
+	3. rollout undo
+- API versions and Resources
+
+##### Kubernetes: Pods and Schedulers
+
+###### Stateful Sets
+- 
