@@ -489,3 +489,78 @@
 		- HTTP GET
 		- TCP Check
 - Etcd backup and restore
+
+- Cluster level logging
+	- Collect logs from all nodes in cluster
+		- Node level logging agent
+		- include a sidecar
+		- push logs directly from within application
+	- Use external solutions like
+		- Elasticsearch
+		- Fluent
+		- EFK
+		- Prometheus / Grafana
+	- Features
+		- Centralized storage
+		- Search and filtering
+		- Alerting
+		- Integration with other tools
+- Node level logging
+	- Collect logs from individual Nodes using kubelet
+	- Use kubectl logs / exec to view logs from containers
+	- Benefits
+		- Increased visibility
+		- Improved troubleshooting
+		- Reduced noise
+		- Improved compliance
+	- Challenge
+		- Data Volume
+		- Complexity
+		- Cost
+	- containerLogMaxSize / containerLogMaxFiles
+- kube-state-metrics with Prometheus, elastic search and end to end setup for exploration
+- Application monitoring fundamentals
+	- Stderr and stdout of containers logs
+	- Troubleshoot application failures
+		- kube-dash - k8s dashboard
+	- Troubleshoot cluster component failure
+		- Prometheus + Grafana
+	- Must able to troubleshoot networking
+- Viewing logs
+	- Kubectl logs
+	- kube dashboard
+	- EFK
+	- Grafana with Loki
+	- External tools
+- Troubleshoot application failure
+	- use kubectl
+	- tools to test network connectivity
+	- check CNI configuration
+	- kube* tools
+	- network issues
+	- Exam tips
+		- Check
+			- Service selector labels
+			- Resource Limits
+			- Ports
+			- Image Tags
+			- Missing settings
+		- Check logs
+			- Indicators in logs
+			- events
+		- Metrics
+		- Use port-forward and exec
+		- force sleep in Docker file
+- Troubleshoot cluster component failure
+	- check component status with kubectl
+	- use kubectl describe on nodes
+	- check schedular logs and system logs
+	- check network connectivity and resources
+	- /var/log/* directory for checking logs 
+- troubleshoot networking
+	- check the status and logs of the pods, nodes, services and network policies
+		- kubectl commands
+	- Test the connectivity and traffic flow between pods, nodes, services and external endpoints
+		- ping, traceroute, wget, telnet, nc, tcpdump, iptables etc
+	- Inspect the network namespaces, interfaces, routes, and DNS configuration of the pods and nodes
+		- ifconfig, route, nslookup, dig, ip
