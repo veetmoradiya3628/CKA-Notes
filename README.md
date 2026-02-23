@@ -7,3 +7,6 @@ CKA Exam Points
 - Services & Networking
 - Storage
 - Troubleshooting
+
+-----------
+Next plan to do hands on with cloud native principles in K8s and containerized env.
