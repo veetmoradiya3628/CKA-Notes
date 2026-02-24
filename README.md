@@ -10,3 +10,4 @@ CKA Exam Points
 
 -----------
 Next plan to do hands on with cloud native principles in K8s and containerized env.
+K8s all stuff with cloud native principles
